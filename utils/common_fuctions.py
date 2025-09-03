@@ -1,7 +1,7 @@
 import os
 import pandas as pd
-from src.logger import get_logger
-from src.custom_exception import CustomException
+from src.logger.logger import get_logger
+from src.exception.custom_exception import CustomException
 import yaml
 import sys
 

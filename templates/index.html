@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOTEL RESERVATION PREDICTION 😊</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #444;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: #4e73df;
+      box-shadow: 0 0 5px rgba(78,115,223,0.4);
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #4e73df;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #2e59d9;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 500;
+      text-align: center;
+    }
+    .result p {
+      margin: 0;
+    }
+    .cancel {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    .no-cancel {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>HOTEL RESERVATION PREDICTION 😊</h2>
+    <form method="POST">
+
+      <div class="form-group">
+        <label for="lead_time">Lead Time</label>
+        <input type="number" id="lead_time" name="lead_time" required>
+      </div>
+
+      <div class="form-group">
+        <label for="no_of_special_requests">No of Special Requests</label>
+        <input type="number" id="no_of_special_requests" name="no_of_special_requests" required>
+      </div>
+
+      <div class="form-group">
+        <label for="avg_price_per_room">Avg Price per Room</label>
+        <input type="number" id="avg_price_per_room" name="avg_price_per_room" required>
+      </div>
+
+      <div class="form-group">
+        <label for="arrival_month">Arrival Month</label>
+        <select id="arrival_month" name="arrival_month" required>
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="arrival_date">Arrival Date</label>
+        <select id="arrival_date" name="arrival_date" required>
+          {% for d in range(1, 32) %}
+          <option value="{{ d }}">{{ d }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="market_segment_type">Market Segment Type</label>
+        <select id="market_segment_type" name="market_segment_type" required>
+          <option value="0">Aviation</option>
+          <option value="1">Complimentary</option>
+          <option value="2">Corporate</option>
+          <option value="3">Offline</option>
+          <option value="4">Online</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="no_of_week_nights">No of Week Nights</label>
+        <input type="number" id="no_of_week_nights" name="no_of_week_nights" required>
+      </div>
+
+      <div class="form-group">
+        <label for="no_of_weekend_nights">No of Weekend Nights</label>
+        <input type="number" id="no_of_weekend_nights" name="no_of_weekend_nights" required>
+      </div>
+
+      <div class="form-group">
+        <label for="type_of_meal_plan">Type of Meal Plan</label>
+        <select id="type_of_meal_plan" name="type_of_meal_plan" required>
+          <option value="0">Meal Plan 1</option>
+          <option value="1">Meal Plan 2</option>
+          <option value="2">Meal Plan 3</option>
+          <option value="3">Not Selected</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="room_type_reserved">Room Type Reserved</label>
+        <select id="room_type_reserved" name="room_type_reserved" required>
+          <option value="0">Room Type 1</option>
+          <option value="1">Room Type 2</option>
+          <option value="2">Room Type 3</option>
+          <option value="3">Room Type 4</option>
+          <option value="4">Room Type 5</option>
+          <option value="5">Room Type 6</option>
+          <option value="6">Room Type 7</option>
+        </select>
+      </div>
+
+      <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction is not none %}
+    <div class="result {% if prediction == 0 %}cancel{% elif prediction == 1 %}no-cancel{% endif %}">
+      {% if prediction == 0 %}
+      <p>The Customer is going to cancel his/her reservation</p>
+      {% elif prediction == 1 %}
+      <p>The Customer is not going to cancel his/her reservation</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+  </div>
+</body>
+</html>

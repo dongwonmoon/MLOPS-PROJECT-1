@@ -1,6 +1,6 @@
-from src.data_ingestion import DataIngestion
-from src.data_preprocessing import DataProcessor
-from src.model_training import ModelTraining
+from src.services.data_ingestion import DataIngestion
+from src.services.data_preprocessing import DataProcessor
+from src.services.model_training import ModelTraining
 from utils.common_fuctions import read_yaml
 from config.path_config import *
 

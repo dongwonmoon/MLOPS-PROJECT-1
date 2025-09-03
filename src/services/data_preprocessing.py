@@ -7,8 +7,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 from imblearn.over_sampling import SMOTE
 
-from src.logger import get_logger
-from src.custom_exception import CustomException
+from src.logger.logger import get_logger
+from src.exception.custom_exception import CustomException
 from config.path_config import *
 from utils.common_fuctions import read_yaml, load_data
 

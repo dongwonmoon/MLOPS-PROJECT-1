@@ -8,8 +8,8 @@ import pandas as pd
 from google.cloud import storage
 from sklearn.model_selection import train_test_split
 
-from src.logger import get_logger
-from src.custom_exception import CustomException
+from src.logger.logger import get_logger
+from src.exception.custom_exception import CustomException
 from config.path_config import *
 from utils.common_fuctions import read_yaml
 

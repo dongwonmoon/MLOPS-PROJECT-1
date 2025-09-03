@@ -10,8 +10,8 @@ from sklearn.model_selection import RandomizedSearchCV
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 
-from src.logger import get_logger
-from src.custom_exception import CustomException
+from src.logger.logger import get_logger
+from src.exception.custom_exception import CustomException
 from config.path_config import *
 from config.model_params import *
 from utils.common_fuctions import read_yaml, load_data
